@@ -20,9 +20,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'basics-angular-bookstore'`, () => {
+  it(`should have as title 'Book Store'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('basics-angular-bookstore');
+    expect(app.title).toEqual('Book Store');
   });
 });
