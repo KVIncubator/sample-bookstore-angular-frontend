@@ -9,7 +9,9 @@ import {Product} from "../../common/product";
 })
 export class ProductListComponent implements OnInit {
 
+  hasProducts: boolean = false;
   products: Product[] = [];
+  productsOnPage: number = 0;
 
   constructor(private productService: ProductService) { }
 
@@ -21,6 +23,8 @@ export class ProductListComponent implements OnInit {
     this.productService.getProductList(0)
       .subscribe(data => {
       this.products = data;
+      this.productsOnPage = data.length;
+      this.hasProducts = this.productsOnPage > 0;
     });
   }
 }

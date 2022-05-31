@@ -1,0 +1,25 @@
+<ng-container>
+  <table class="table">
+    <thead class="table-dark">
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Units in Stock</th>
+    </tr>
+    </thead>
+    <tbody *ngIf="hasProducts">
+    <tr *ngFor="let product of products">
+      <td><img alt="{{product.name}}" src="{{product.imageUrl}}" height="50"></td>
+      <td>{{product.name}}</td>
+      <td>{{product.unitPrice | currency}}</td>
+      <td>{{product.unitsInStock}}</td>
+    </tr>
+    </tbody>
+    <tfoot *ngIf="!hasProducts">
+    <tr>
+      <td colspan="4" align="center"><p>No products found</p></td>
+    </tr>
+    </tfoot>
+  </table>
+</ng-container>

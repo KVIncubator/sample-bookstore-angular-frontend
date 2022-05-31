@@ -1,18 +1,20 @@
-<table class="table">
-  <thead class="table-dark">
-  <tr>
-    <th></th>
-    <th>Name</th>
-    <th>Price</th>
-    <th>Units in Stock</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let product of products">
-    <td><img alt="{{product.name}}" src="{{product.imageUrl}}" height="50"></td>
-    <td>{{product.name}}</td>
-    <td>{{product.unitPrice | currency}}</td>
-    <td>{{product.unitsInStock}}</td>
-  </tr>
-  </tbody>
-</table>
+<ng-container>
+  <section class="bg-light pt-5 pb-5 shadow-sm">
+    <div class="container">
+      <div class="row" *ngIf="hasProducts">
+        <!--Item One -->
+        <div class="col-lg-3 mb-3 d-flex align-items-stretch" *ngFor="let product of products; let _i=index">
+          <div class="card">
+            <img src="{{product.imageUrl}}" class="card-img-top" alt="{{product.name}}">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">{{product.name}}</h5>
+              <p class="card-text mb-4">{{product.unitPrice | currency}}</p>
+              <a href="#" class="btn btn-danger text-white mt-auto align-self-start">Add to cart</a>
+            </div>
+          </div>
+        </div>
+       </div>
+      <div *ngIf="!hasProducts" class="row alert alert-warning" role="alert"><p>No products found</p></div>
+    </div>
+  </section>
+</ng-container>
