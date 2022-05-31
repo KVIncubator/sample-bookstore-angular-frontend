@@ -1,0 +1,9 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item" *ngFor="let productCategory of productCategories">
+      <a routerLink="/category/{{ productCategory.id }}" routerLinkActive="active" class="nav-link">
+        {{ productCategory.name }}
+      </a>
+    </li>
+  </ul>
+</div>

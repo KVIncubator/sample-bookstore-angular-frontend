@@ -26,27 +26,12 @@
 <main class="flex-shrink-0">
   <div class="container">
     <div class="row">
-      <div class="col-2">
-        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
-          <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-              <a href="#" class="nav-link active" aria-current="page">
-                Home
-              </a>
-            </li>
-            <!--
-            <li>
-              <a href="#" class="nav-link link-dark">
-                Dashboard
-              </a>
-            </li>
-            -->
-          </ul>
-        </div>
+      <div class="col-3">
+        <app-product-category-menu></app-product-category-menu>
       </div>
-      <div class="col-9 offset-1">
-        <h2>Products</h2>
-        <app-product-list></app-product-list>
+      <div class="col-9">
+        <!-- MAIN CONTENT-->
+        <router-outlet></router-outlet>
       </div>
     </div>
   </div>
