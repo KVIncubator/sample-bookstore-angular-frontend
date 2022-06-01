@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../../services/product.service";
 import {Product} from "../../common/product";
 import {ActivatedRoute} from "@angular/router";
@@ -14,9 +14,11 @@ export class ProductListComponent implements OnInit {
   hasProducts: boolean = false;
   products: Product[] = [];
   productsOnPage: number = 0;
+  searchMode: boolean = false;
 
   constructor(private productService: ProductService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
@@ -25,18 +27,37 @@ export class ProductListComponent implements OnInit {
   }
 
   private listProducts() {
+    this.searchMode = this.route.snapshot.paramMap.has('keyword');
+    if (this.searchMode) {
+      this.handleSearchProducts();
+    } else {
+      this.handleListProducts();
+    }
+  }
+
+
+  private handleListProducts() {
     const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
-    console.log("listProducts ")
     if (hasCategoryId) {
       // @ts-ignore
-      this.currentCategoryId = 0 + this.route.snapshot.paramMap.get('id');
+      this.currentCategoryId = this.route.snapshot.paramMap.get('id');
     }
 
     this.productService.getProductList(this.currentCategoryId, 0)
       .subscribe(data => {
-      this.products = data;
-      this.productsOnPage = data.length;
-      this.hasProducts = this.productsOnPage > 0;
-    });
+        this.products = data;
+        this.productsOnPage = data.length;
+        this.hasProducts = this.productsOnPage > 0;
+      });
+  }
+
+  private handleSearchProducts() {
+    const keyword: string = "" + this.route.snapshot.paramMap.get('keyword');
+    this.productService.searchProducts(keyword, 0)
+      .subscribe(data => {
+        this.products = data;
+        this.productsOnPage = data.length;
+        this.hasProducts = this.productsOnPage > 0;
+      });
   }
 }

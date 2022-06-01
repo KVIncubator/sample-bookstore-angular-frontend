@@ -21,6 +21,16 @@ export class ProductService {
       .pipe(map(res => res.content));
   }
 
+  searchProducts(keyword: string, page : number): Observable<Product[]> {
+    const params = {
+      "page": page,
+      "name": keyword
+    };
+    return this.apiService.get("/products",
+      new HttpParams({ fromObject: params }))
+      .pipe(map(res => res.content));
+  }
+
   getProductCategoryList(): Observable<ProductCategory[]> {
     return this.apiService.get("/product-categories");
   }

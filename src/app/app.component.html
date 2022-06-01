@@ -17,9 +17,7 @@
     <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
       <span class="fs-4">Book Store</span>
     </a>
-    <form class="col-12 col-lg-auto mb-3 mb-lg-0">
-      <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-    </form>
+    <app-search></app-search>
   </div>
 </header>
 
@@ -30,7 +28,6 @@
         <app-product-category-menu></app-product-category-menu>
       </div>
       <div class="col-9">
-        <!-- MAIN CONTENT-->
         <router-outlet></router-outlet>
       </div>
     </div>

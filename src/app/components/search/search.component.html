@@ -1,0 +1,17 @@
+<form class="col-12 col-lg-auto mb-3 mb-lg-0">
+  <div class="row">
+    <div class="col">
+      <input
+        #searchInput type="text"
+        placeholder="Search..."
+        (keyup.enter)="doSearch(searchInput.value)"
+        class="form-control"
+        aria-label="Search">
+    </div>
+    <div class="col">
+      <button (click)="doSearch(searchInput.value)" class="btn btn-primary">
+        &raquo;
+      </button>
+    </div>
+  </div>
+</form>

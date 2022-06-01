@@ -10,12 +10,14 @@ import {ApiService} from "./services/api.service";
 import {ProductService} from "./services/product.service";
 import {ProductCategoryMenuComponent} from './components/product-category-menu/product-category-menu.component';
 import {ProductListComponent} from './components/product-list/product-list.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductCategoryMenuComponent,
-    ProductListComponent
+    ProductListComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
