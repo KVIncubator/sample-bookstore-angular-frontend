@@ -20,7 +20,7 @@ export class ProductListComponent implements OnInit {
   searchMode: boolean = false;
 
   pageNumber: number = 1;
-  pageSize: number = 2;
+  pageSize: number = 10;
   totalElements: number = 0;
 
   constructor(private productService: ProductService,
@@ -55,28 +55,31 @@ export class ProductListComponent implements OnInit {
 
     this.previousCategoryId = this.currentCategoryId;
 
-    this.productService.getProductList(this.currentCategoryId,
-      this.pageNumber - 1,  this.pageSize)
-      .subscribe(data => {
-        let products = data.content;
-        console.log(data);
-        this.products = products;
-        this.productsOnPage = products.length;
-        this.hasProducts = this.productsOnPage > 0;
-        this.pageNumber = data.number + 1;
-        this.pageSize = data.size;
-        this.totalElements = data.totalElements;
-
-      });
+    this.productService.getProductList(this.currentCategoryId,this.pageNumber - 1,  this.pageSize)
+      .subscribe(this.processResult());
   }
 
   private handleSearchProducts() {
     const keyword: string = "" + this.route.snapshot.paramMap.get('keyword');
-    this.productService.searchProducts(keyword, 0)
-      .subscribe(data => {
-        this.products = data;
-        this.productsOnPage = data.length;
-        this.hasProducts = this.productsOnPage > 0;
-      });
+    this.productService.searchProducts(keyword, this.pageNumber - 1,  this.pageSize)
+      .subscribe(this.processResult());
+  }
+
+  private processResult() {
+    return data => {
+      let products = data.content;
+      this.products = products;
+      this.productsOnPage = products.length;
+      this.hasProducts = this.productsOnPage > 0;
+      this.pageNumber = data.number + 1;
+      this.pageSize = data.size;
+      this.totalElements = data.totalElements;
+    }
+  }
+
+  updatePageSize(pageSize: number) {
+    this.pageSize = pageSize;
+    this.pageNumber = 1;
+    this.listProducts();
   }
 }

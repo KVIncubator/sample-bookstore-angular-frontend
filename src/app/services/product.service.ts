@@ -5,7 +5,7 @@ import {ApiService} from "./api.service";
 import {HttpParams} from "@angular/common/http";
 import {ProductCategory} from "../common/product-category";
 
-interface ProductListResponse {
+interface ProductPageResponse {
   content: Product[];
   size: number;
   totalElements: number;
@@ -20,23 +20,24 @@ export class ProductService {
   constructor(private apiService: ApiService) {
   }
 
-  getProductList(categoryId: number, pageNumber: number, pageSize: number): Observable<ProductListResponse> {
+  getProductList(categoryId: number, pageNumber: number, pageSize: number): Observable<ProductPageResponse> {
     const params = {
       "page": pageNumber,
       "limit": pageSize,
     };
     return this.apiService.get(`/product-categories/${categoryId}/products`,
-      new HttpParams({fromObject: params})).pipe(map(response => response as ProductListResponse));
+      new HttpParams({fromObject: params})).pipe(map(response => response as ProductPageResponse));
   }
 
-  searchProducts(keyword: string, page: number): Observable<Product[]> {
+  searchProducts(keyword: string, pageNumber: number, pageSize: number): Observable<ProductPageResponse> {
     const params = {
-      "page": page,
+      "page": pageNumber,
+      "limit": pageSize,
       "name": keyword
     };
     return this.apiService.get("/products",
       new HttpParams({fromObject: params}))
-      .pipe(map(res => res.content));
+      .pipe(map(response => response as ProductPageResponse));
   }
 
   getProductCategoryList(): Observable<ProductCategory[]> {

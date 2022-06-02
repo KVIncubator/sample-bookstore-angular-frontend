@@ -12,6 +12,7 @@ import {ProductCategoryMenuComponent} from './components/product-category-menu/p
 import {ProductListComponent} from './components/product-list/product-list.component';
 import { SearchComponent } from './components/search/search.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { CartStatusComponent } from './components/cart-status/cart-status.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     ProductCategoryMenuComponent,
     ProductListComponent,
     SearchComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    CartStatusComponent
   ],
   imports: [
     BrowserModule,
