@@ -11,10 +11,17 @@ import {ActivatedRoute} from "@angular/router";
 export class ProductListComponent implements OnInit {
 
   currentCategoryId: number = 1;
+  previousCategoryId: number = 1;
   hasProducts: boolean = false;
   products: Product[] = [];
   productsOnPage: number = 0;
+
+
   searchMode: boolean = false;
+
+  pageNumber: number = 1;
+  pageSize: number = 2;
+  totalElements: number = 0;
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute) {
@@ -26,7 +33,7 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-  private listProducts() {
+  listProducts() {
     this.searchMode = this.route.snapshot.paramMap.has('keyword');
     if (this.searchMode) {
       this.handleSearchProducts();
@@ -42,11 +49,24 @@ export class ProductListComponent implements OnInit {
       this.currentCategoryId = +this.route.snapshot.paramMap.get('id');
     }
 
-    this.productService.getProductList(this.currentCategoryId, 0)
+    if (this.previousCategoryId != this.currentCategoryId) {
+      this.pageNumber = 1;
+    }
+
+    this.previousCategoryId = this.currentCategoryId;
+
+    this.productService.getProductList(this.currentCategoryId,
+      this.pageNumber - 1,  this.pageSize)
       .subscribe(data => {
-        this.products = data;
-        this.productsOnPage = data.length;
+        let products = data.content;
+        console.log(data);
+        this.products = products;
+        this.productsOnPage = products.length;
         this.hasProducts = this.productsOnPage > 0;
+        this.pageNumber = data.number + 1;
+        this.pageSize = data.size;
+        this.totalElements = data.totalElements;
+
       });
   }
 
