@@ -1,4 +1,5 @@
 export class Product {
+  id: string;
   sku: string;
   name: string;
   description: string;
@@ -6,14 +7,8 @@ export class Product {
   imageUrl: string;
   active: boolean;
   unitsInStock: number;
+  createdAt: Date;
 
-  constructor(sku: string, name: string, description: string, unitPrice: number, imageUrl: string, active: boolean, unitsInStock: number) {
-    this.sku = sku;
-    this.name = name;
-    this.description = description;
-    this.unitPrice = unitPrice;
-    this.imageUrl = imageUrl;
-    this.active = active;
-    this.unitsInStock = unitsInStock;
+  constructor() {
   }
 }

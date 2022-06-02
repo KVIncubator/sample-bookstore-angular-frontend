@@ -16,7 +16,7 @@ export class ProductService {
       "page": page,
       "category": categoryId
     };
-    return this.apiService.get("/product-categories/" + categoryId + "/products",
+    return this.apiService.get(`/product-categories/${categoryId}/products`,
       new HttpParams({ fromObject: params }))
       .pipe(map(res => res.content));
   }
@@ -33,5 +33,10 @@ export class ProductService {
 
   getProductCategoryList(): Observable<ProductCategory[]> {
     return this.apiService.get("/product-categories");
+  }
+
+  getProduct(productId: number): Observable<Product> {
+    return this.apiService.get(`/products/${productId}`);
+
   }
 }
