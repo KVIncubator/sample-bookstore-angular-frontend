@@ -23,7 +23,7 @@ export class ProductService {
   getProductList(categoryId: number, pageNumber: number, pageSize: number): Observable<ProductPageResponse> {
     const params = {
       "page": pageNumber,
-      "limit": pageSize,
+      "size": pageSize,
     };
     return this.apiService.get(`/product-categories/${categoryId}/products`,
       new HttpParams({fromObject: params})).pipe(map(response => response as ProductPageResponse));
@@ -32,7 +32,7 @@ export class ProductService {
   searchProducts(keyword: string, pageNumber: number, pageSize: number): Observable<ProductPageResponse> {
     const params = {
       "page": pageNumber,
-      "limit": pageSize,
+      "size": pageSize,
       "name": keyword
     };
     return this.apiService.get("/products",
