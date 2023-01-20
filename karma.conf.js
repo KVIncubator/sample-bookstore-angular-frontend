@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/basics-angular-bookstore'),
+      dir: require('path').join(__dirname, './coverage/bs-rst-bookstore-ng'),
       subdir: '.',
       reporters: [
         { type: 'html' },

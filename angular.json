@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "basics-angular-bookstore": {
+    "bs-rst-bookstore-ng": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/basics-angular-bookstore",
+            "outputPath": "dist/bs-rst-bookstore-ng",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "basics-angular-bookstore:build:production"
+              "browserTarget": "bs-rst-bookstore-ng:build:production"
             },
             "development": {
-              "browserTarget": "basics-angular-bookstore:build:development"
+              "browserTarget": "bs-rst-bookstore-ng:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "basics-angular-bookstore:build"
+            "browserTarget": "bs-rst-bookstore-ng:build"
           }
         },
         "test": {
@@ -107,5 +107,5 @@
       }
     }
   },
-  "defaultProject": "basics-angular-bookstore"
+  "defaultProject": "bs-rst-bookstore-ng"
 }
