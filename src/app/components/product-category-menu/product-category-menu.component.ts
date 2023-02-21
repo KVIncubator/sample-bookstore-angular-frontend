@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../../services/product.service";
 import {ProductCategory} from "../../common/product-category";
 
@@ -11,7 +11,8 @@ export class ProductCategoryMenuComponent implements OnInit {
 
   productCategories: ProductCategory[] | undefined;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService) {
+  }
 
   ngOnInit(): void {
     this.listProductCategories();

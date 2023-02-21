@@ -55,13 +55,13 @@ export class ProductListComponent implements OnInit {
 
     this.previousCategoryId = this.currentCategoryId;
 
-    this.productService.getProductList(this.currentCategoryId,this.pageNumber - 1,  this.pageSize)
+    this.productService.getProductList(this.currentCategoryId, this.pageNumber - 1, this.pageSize)
       .subscribe(this.processResult());
   }
 
   private handleSearchProducts() {
     const keyword: string = "" + this.route.snapshot.paramMap.get('keyword');
-    this.productService.searchProducts(keyword, this.pageNumber - 1,  this.pageSize)
+    this.productService.searchProducts(keyword, this.pageNumber - 1, this.pageSize)
       .subscribe(this.processResult());
   }
 
